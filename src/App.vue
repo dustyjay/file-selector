@@ -1,28 +1,51 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <FileExplorer />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import FileExplorer from './FileExplorer/Index.vue';
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  components: { FileExplorer }
+};
 </script>
 
-<style>
+<style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 7.75rem;
+}
+
+button {
+  background-color: #1890ff;
+  color: white;
+  border: 1px solid #1890ff;
+  padding: 0.3rem 1rem;
+  border-radius: 4px;
+  outline: none;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 200ms linear;
+
+  &[disabled] {
+    border-color: #d9d9d9;
+    background-color: #f5f5f5;
+    color: #bfbfbf;
+  }
+
+  &.icon {
+    padding: 0.75rem;
+    background-color: transparent;
+    border-color: transparent;
+
+    &:hover {
+      border-radius: 8px;
+      background-color: rgba(0, 0, 0, 0.04);
+    }
+  }
 }
 </style>
