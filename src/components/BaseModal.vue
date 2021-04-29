@@ -57,8 +57,7 @@ export default {
 
 <style lang="scss" scoped>
 .modal {
-  width: 80vw;
-  max-width: 420px;
+  width: 90vw;
   height: 380px;
   border-radius: 16px;
   padding: 0.5rem 0.5rem 0;
@@ -68,8 +67,18 @@ export default {
   flex-direction: column;
   position: absolute;
   z-index: 1000;
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
+  margin-left: -45vw;
+  @media screen and (min-width: 468px) {
+    width: 420px;
+    margin-left: -210px;
+  }
+  @media screen and (min-width: 768px) {
+    top: 0;
+    left: 0;
+    margin-left: 0;
+  }
   &.show {
     display: flex;
   }
