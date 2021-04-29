@@ -34,9 +34,13 @@ export default {
       this.showModal = false;
     },
     handleBlur() {
+      const modal = document.querySelector('.modal');
       setTimeout(() => {
-        this.closeModal();
-      }, 200);
+        const activeElement = document.activeElement;
+        if (!modal.contains(activeElement)) {
+          this.closeModal();
+        }
+      }, 50);
     }
   },
   watch: {
@@ -54,7 +58,6 @@ export default {
 <style lang="scss" scoped>
 .modal {
   width: 80vw;
-  // min-width: 100%;
   max-width: 420px;
   height: 380px;
   border-radius: 16px;

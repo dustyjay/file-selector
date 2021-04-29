@@ -1,7 +1,12 @@
 <template>
   <BaseModal :show.sync="showModal">
     <template slot="header">
-      <button @click="handelBackButton" class="icon" v-if="!isRootFolder">
+      <button
+        @click="handelBackButton"
+        type="button"
+        class="icon"
+        :class="{ 'd-none': isRootFolder }"
+      >
         <img src="@/assets/back-button.svg" alt="go back" />
       </button>
       <h3 class="capitalize" :class="{ 'ml-3': isRootFolder }">
@@ -172,5 +177,11 @@ export default {
 }
 .ml-3 {
   margin-left: 1rem;
+}
+.d-none {
+  z-index: -1;
+  width: 0;
+  opacity: 0;
+  padding: 0;
 }
 </style>
