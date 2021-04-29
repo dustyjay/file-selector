@@ -13,13 +13,6 @@ export default {
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  margin-top: 7.75rem;
-}
-
 button {
   background-color: #1890ff;
   color: white;

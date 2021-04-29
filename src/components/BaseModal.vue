@@ -1,10 +1,10 @@
 <template>
-  <div class="modal">
+  <div class="modal" tabindex="-1" :class="{ show }" @blur="handleBlur()">
     <div class="modal-header">
       <div class="modal-header__title">
         <slot name="header" />
       </div>
-      <button class="icon">
+      <button class="icon" @click="closeModal()">
         <img src="@/assets/close.svg" alt="close modal" />
       </button>
     </div>
@@ -15,21 +15,61 @@
 
 <script>
 export default {
-  name: 'base-modal'
+  name: 'base-modal',
+  props: {
+    show: Boolean
+  },
+  computed: {
+    showModal: {
+      get() {
+        return this.show;
+      },
+      set(val) {
+        this.$emit('update:show', val);
+      }
+    }
+  },
+  methods: {
+    closeModal() {
+      this.showModal = false;
+    },
+    handleBlur() {
+      setTimeout(() => {
+        this.closeModal();
+      }, 200);
+    }
+  },
+  watch: {
+    show(newVal) {
+      if (newVal) {
+        setTimeout(() => {
+          document.querySelector('.modal').focus();
+        }, 50);
+      }
+    }
+  }
 };
 </script>
 
 <style lang="scss" scoped>
 .modal {
-  width: 80%;
+  width: 80vw;
+  // min-width: 100%;
   max-width: 420px;
   height: 380px;
   border-radius: 16px;
   padding: 0.5rem 0.5rem 0;
   background-color: white;
   box-shadow: 0px 8px 24px 0px #0000001f, 0px 4px 8px 0px #00000014;
-  display: flex;
+  display: none;
   flex-direction: column;
+  position: absolute;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  &.show {
+    display: flex;
+  }
   &-header {
     display: flex;
     justify-content: space-between;

@@ -14,11 +14,20 @@ h6 {
   font-weight: normal;
 }
 
+@font-face {
+  font-family: Calibre;
+  src: url('./fonts/Calibre-Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
 html,
 body {
   font-size: 14px;
   color: #262626;
-  @media screen and (min-width: 768px) {
+  font-family: Calibre, 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
+    sans-serif;
+  @media screen and (min-width: 568px) {
     font-size: 16px;
   }
 }
@@ -35,7 +44,18 @@ ul,
 li {
   list-style: none;
 }
+:focus {
+  outline: none;
+}
 
 .text-center {
   text-align: center;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.first-letter::first-letter {
+  text-transform: uppercase;
 }

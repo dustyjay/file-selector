@@ -15,7 +15,7 @@ const formatStructure = obj => {
     for (let index = 0; index < folders.length; index++) {
       const { id, ...other } = folders[index];
       const { name } = other;
-      finalObj[id] = { name, type: 'folder', children: formatStructure(other) };
+      finalObj[id] = { name, children: formatStructure(other) };
     }
   }
   if (files.length > 0) {
@@ -28,8 +28,9 @@ const formatStructure = obj => {
 const formatFiles = files => {
   const allFiles = {};
   for (let index = 0; index < files.length; index++) {
-    const { id, name, url: image } = files[index];
-    allFiles[id] = { name, image, type: 'file' };
+    const { id, name, url: image, mimeType } = files[index];
+    const type = mimeType.startsWith('image') ? 'image' : 'doc';
+    allFiles[id] = { name, image, type };
   }
   return allFiles;
 };
