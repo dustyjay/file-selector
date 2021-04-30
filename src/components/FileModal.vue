@@ -27,7 +27,13 @@
       >
         <FolderSvg v-if="!image" />
         <DocSvg v-else-if="type === 'doc'" />
-        <img class="item__image" :alt="type" v-else :src="image" />
+        <img
+          class="item__image"
+          :alt="type"
+          v-else
+          :src="image"
+          @error="handleImageError"
+        />
         <span class="item__name">
           {{ name }}
         </span>
@@ -88,7 +94,7 @@ export default {
     buttonText() {
       const { length } = this.localSelectedFiles;
       if (length === 0) return 'Select files';
-      let suffix = 'File';
+      let suffix = 'file';
       if (length > 1) suffix = 'files';
       return `Select ${length} ${suffix}`;
     }
@@ -130,6 +136,9 @@ export default {
       this.activeIndex = 0;
       this.breadcrumbs = [''];
       this.localSelectedFiles = [];
+    },
+    handleImageError(e) {
+      e.target.src = 'https://img.icons8.com/ios/452/no-image.png';
     }
   },
   watch: {
