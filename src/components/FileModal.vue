@@ -34,7 +34,7 @@
           :src="image"
           @error="handleImageError"
         />
-        <span class="item__name">
+        <span class="item__name first-letter">
           {{ name }}
         </span>
         <img
@@ -175,7 +175,6 @@ export default {
     text-overflow: ellipsis;
     font-size: 1rem;
     margin-left: 0.75rem;
-    text-transform: capitalize;
   }
   &__image {
     border-radius: 8px;
