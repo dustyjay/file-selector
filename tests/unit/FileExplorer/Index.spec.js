@@ -1,5 +1,4 @@
-import { fireEvent, render } from '@testing-library/vue';
-import { mount, shallowMount } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 import FileExplorer from '@/FileExplorer/Index.vue';
 
 describe('File Explorer Page', () => {
@@ -21,7 +20,7 @@ describe('File Explorer Page', () => {
     wrapper.destroy();
   });
 
-  it('has only one button with the text `Select files`', () => {
+  it('has only one button with the text `Select Files`', () => {
     const button = wrapper.findAll('button');
     expect(button.length).toEqual(1);
     expect(button.at(0).text()).toBe('Select Files');
