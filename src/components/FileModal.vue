@@ -9,7 +9,7 @@
       >
         <img src="@/assets/back-button.svg" alt="go back" />
       </button>
-      <h3 class="capitalize" :class="{ 'ml-3': isRootFolder }">
+      <h3 class="title" :class="{ 'ml-3': isRootFolder }">
         {{ modalTitle }}
       </h3>
     </template>
@@ -191,5 +191,8 @@ export default {
   width: 0;
   opacity: 0;
   padding: 0;
+}
+.title {
+  text-transform: capitalize;
 }
 </style>

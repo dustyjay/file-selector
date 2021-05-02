@@ -4,7 +4,8 @@ export const fetchFolders = async () => {
     const result = await res.json();
     return formatStructure(result);
   } catch (err) {
-    throw new Error(err);
+    console.log(err);
+    // throw new Error(err);
   }
 };
 
