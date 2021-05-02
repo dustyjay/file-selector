@@ -13,13 +13,15 @@
     <br />
     <div class="select-files" v-if="selectedFileNames.length > 0">
       <h4><strong>Files selected</strong></h4>
-      <p
-        class="first-letter"
-        v-for="(name, index) in selectedFileNames"
-        :key="index"
-      >
-        {{ name }}
-      </p>
+      <ul>
+        <li
+          class="first-letter"
+          v-for="(name, index) in selectedFileNames"
+          :key="index"
+        >
+          {{ name }}
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -69,7 +71,7 @@ export default {
     width: 100%;
     margin: 0 auto;
     padding: 1rem 0.75rem;
-    p {
+    li {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
