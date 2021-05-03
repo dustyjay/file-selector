@@ -1,9 +1,11 @@
 import { shallowMount } from '@vue/test-utils';
 import FileExplorer from '@/FileExplorer/Index.vue';
+import * as helpers from '@/helpers.js';
 
 describe('File Explorer Page', () => {
   let wrapper;
   beforeEach(() => {
+    helpers.fetchFolders = jest.fn();
     const data = () => {
       return {
         showModal: false,
