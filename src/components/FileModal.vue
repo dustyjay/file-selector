@@ -62,7 +62,12 @@ export default {
   name: 'file-modal',
   data() {
     return {
-      breadcrumbs: [''],
+      breadcrumbs: [
+        {
+          name: 'Torstraße 145, 39481 Nürnberg',
+          children: this.fileStructure
+        }
+      ],
       activeIndex: 0,
       localSelectedFiles: {}
     };
@@ -77,12 +82,9 @@ export default {
       }
     },
     modalTitle() {
-      return this.isRootFolder
-        ? 'Torstraße 145, 39481 Nürnberg'
-        : this.breadcrumbs[this.activeIndex]['name'];
+      return this.breadcrumbs[this.activeIndex]['name'];
     },
     currentFileStructure() {
-      if (this.isRootFolder) return this.fileStructure;
       return this.breadcrumbs[this.activeIndex]['children'];
     },
     isRootFolder() {
@@ -128,7 +130,12 @@ export default {
     },
     resetModal() {
       this.activeIndex = 0;
-      this.breadcrumbs = [''];
+      this.breadcrumbs = [
+        {
+          name: 'Torstraße 145, 39481 Nürnberg',
+          children: this.fileStructure
+        }
+      ];
       this.localSelectedFiles = {};
     },
     handleImageError(e) {

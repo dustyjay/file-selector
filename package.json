@@ -22,6 +22,7 @@
     "jest-fetch-mock": "^3.0.3",
     "node-sass": "^5.0.0",
     "sass-loader": "^10.1.1",
+    "sinon": "^10.0.0",
     "vue": "^2.6.11",
     "vue-jest": "^3.0.7"
   },
