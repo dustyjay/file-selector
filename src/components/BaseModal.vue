@@ -48,7 +48,9 @@ export default {
   watch: {
     show(newVal) {
       if (newVal) {
-        setTimeout(() => {}, 50);
+        setTimeout(() => {
+          document.querySelector('.modal').focus();
+        }, 50);
       }
     }
   }
