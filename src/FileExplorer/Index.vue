@@ -35,13 +35,13 @@ export default {
   data() {
     return {
       fileStructure: {},
-      selectedFiles: [],
+      selectedFiles: {},
       showModal: false
     };
   },
   computed: {
     selectedFileNames() {
-      return this.selectedFiles.map(({ name }) => name);
+      return Object.values(this.selectedFiles);
     }
   },
   async created() {

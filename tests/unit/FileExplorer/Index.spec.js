@@ -9,7 +9,7 @@ describe('File Explorer Page', () => {
     const data = () => {
       return {
         showModal: false,
-        selectedFiles: []
+        selectedFiles: {}
       };
     };
 
@@ -40,18 +40,13 @@ describe('File Explorer Page', () => {
   });
 
   it('shows the items selected', async () => {
-    const selectedFiles = [
-      {
-        id: 1,
-        name: 'catfish.png'
-      }
-    ];
+    const selectedFiles = { 1: 'Johannesberg.png', 2: 'Prince of Persia.mp4' };
     await wrapper.setData({
       selectedFiles
     });
     const selectedFileSection = wrapper.find('.select-files');
     const listItems = selectedFileSection.findAll('li');
     expect(selectedFileSection.exists()).toBeTruthy();
-    expect(listItems.length).toEqual(selectedFiles.length);
+    expect(listItems.length).toEqual(Object.keys(selectedFiles).length);
   });
 });

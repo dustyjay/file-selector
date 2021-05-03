@@ -9,14 +9,14 @@ describe('File Modal', () => {
       return {
         activeIndex: 0,
         breadcrumbs: [''],
-        localSelectedState: []
+        localSelectedState: {}
       };
     };
 
     const propsData = {
       show: true,
       fileStructure: mockedData,
-      selectedFiles: []
+      selectedFiles: {}
     };
 
     wrapper = shallowMount(FileModal, {

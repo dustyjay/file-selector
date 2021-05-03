@@ -42,7 +42,7 @@
           src="@/assets/arrow-forward.svg"
           alt="view folder"
         />
-        <img v-if="hasTick(id) > -1" src="@/assets/tick.svg" alt="check" />
+        <img v-if="hasTick(id)" src="@/assets/tick.svg" alt="check" />
       </li>
     </ul>
   </BaseModal>
@@ -56,7 +56,7 @@ export default {
   components: { BaseModal, DocSvg, FolderSvg },
   props: {
     fileStructure: Object,
-    selectedFiles: Array,
+    selectedFiles: Object,
     show: Boolean
   },
   name: 'file-modal',
@@ -64,7 +64,7 @@ export default {
     return {
       breadcrumbs: [''],
       activeIndex: 0,
-      localSelectedFiles: []
+      localSelectedFiles: {}
     };
   },
   computed: {
@@ -89,10 +89,10 @@ export default {
       return this.breadcrumbs.length === 1;
     },
     isDisabled() {
-      return this.localSelectedFiles.length === 0;
+      return Object.keys(this.localSelectedFiles).length === 0;
     },
     buttonText() {
-      const { length } = this.localSelectedFiles;
+      const { length } = Object.keys(this.localSelectedFiles);
       if (length === 0) return 'Select files';
       let suffix = 'file';
       if (length > 1) suffix = 'files';
@@ -109,13 +109,10 @@ export default {
       this.activeIndex += 1;
     },
     handleFileClick({ id, name }) {
-      const index = this.hasTick(id);
-      if (index === -1) {
-        this.localSelectedFiles.push({ id, name });
+      if (!this.hasTick(id)) {
+        this.$set(this.localSelectedFiles, id, name);
       } else {
-        this.localSelectedFiles = this.localSelectedFiles.filter(
-          ({ id: fileId }) => fileId !== id
-        );
+        this.$delete(this.localSelectedFiles, id);
       }
     },
     handelBackButton() {
@@ -127,15 +124,12 @@ export default {
       this.showModal = false;
     },
     hasTick(id) {
-      const index = this.localSelectedFiles.findIndex(
-        ({ id: fileId }) => fileId === id
-      );
-      return index;
+      return !!this.localSelectedFiles[id];
     },
     resetModal() {
       this.activeIndex = 0;
       this.breadcrumbs = [''];
-      this.localSelectedFiles = [];
+      this.localSelectedFiles = {};
     },
     handleImageError(e) {
       e.target.src = 'https://img.icons8.com/ios/452/no-image.png';
@@ -145,7 +139,7 @@ export default {
     show(newVal) {
       this.resetModal();
       if (newVal) {
-        this.localSelectedFiles = [...this.selectedFiles];
+        this.localSelectedFiles = { ...this.selectedFiles };
       }
     }
   }
@@ -154,7 +148,7 @@ export default {
 <style lang="scss" scoped>
 .item {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   padding: 0.5rem;
   transition: 300ms linear;
   border-radius: 8px;
@@ -175,6 +169,7 @@ export default {
     text-overflow: ellipsis;
     font-size: 1rem;
     margin-left: 0.75rem;
+    transform: translateY(3px);
   }
   &__image {
     border-radius: 8px;
