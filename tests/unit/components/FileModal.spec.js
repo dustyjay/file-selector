@@ -72,7 +72,7 @@ describe('File Modal', () => {
     expect(modalTitle.classes()).toContain('d-none');
   });
 
-  it('renders the children of the folder you click on', async () => {
+  it('renders the children of the current folder you are on', async () => {
     const { children } = await selectFolder();
     const listItems = wrapper.findAll('.item');
     const firstItem = listItems.at(0);
@@ -91,13 +91,5 @@ describe('File Modal', () => {
     await selectFolder();
     const modalTitle = wrapper.find('.icon');
     expect(modalTitle.classes()).not.toContain('d-none');
-  });
-
-  it('shows the right number of children in the current folder', async () => {
-    await selectFolder();
-    const listItems = wrapper.findAll('.item');
-    const currentFileStructure = wrapper.vm.currentFileStructure;
-    const { length } = Object.keys(currentFileStructure);
-    expect(listItems.length).toEqual(length);
   });
 });

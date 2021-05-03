@@ -39,16 +39,16 @@ export default {
         const activeElement = document.activeElement;
         if (!modal.contains(activeElement)) {
           this.closeModal();
+          return;
         }
+        document.querySelector('.modal').focus();
       }, 50);
     }
   },
   watch: {
     show(newVal) {
       if (newVal) {
-        setTimeout(() => {
-          document.querySelector('.modal').focus();
-        }, 50);
+        setTimeout(() => {}, 50);
       }
     }
   }
