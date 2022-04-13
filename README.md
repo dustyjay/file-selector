@@ -1,4 +1,4 @@
-# reo-task
+# File Explorer
 
 ## Project setup
 ```
